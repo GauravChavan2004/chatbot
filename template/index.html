@@ -27,6 +27,7 @@
         <p><span>Hii there. </span></p>
       </div>
     </div>
+    <!--Input Field -->
     <div id="User_Input">
       <input
         type="text"
@@ -37,6 +38,7 @@
         <i class="bi bi-send"></i>
       </button>
     </div>
+
     <script>
       function getUserResponse() {
         var userText = $('#textInput').val();
@@ -46,8 +48,18 @@
         //To display message entered by user
 
         $('#BotInput').append(userHTML);
-      }
 
+        //send user message data to Backend
+        $.get('/userResponse', { user_message: userText }).done(function (
+          data
+        ) {
+          //send the bot reply to user
+          var botReply =
+            "<p class='botText'>ChatBot: <span>" + data + '</span></p>';
+          $('#BotInput').append(botReply);
+        });
+      }
+      //when you click the button usertext diplay in BotInput container.
       $('#Submit_btn').click(function () {
         getUserResponse();
       });

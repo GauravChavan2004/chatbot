@@ -21,4 +21,5 @@ from ChatBot_App import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home), 
+    path('userResponse',views.user_Response),
 ]
